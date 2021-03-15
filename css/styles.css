@@ -1,0 +1,230 @@
+:root {
+    --main-color: #2e5090;
+    --main-color-bright: #5b82cc;
+    --main-text-color: #444444;
+    --main-background-color: #1c1d26;
+    --border-color: #444444;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: var(--main-text-color);
+}
+
+body {
+    margin: 0 auto;
+    background-color: var(--main-background-color);
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+
+body.thopen {
+    overflow-y: hidden;
+}
+
+.theater {
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--main-background-color);
+    position: fixed;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    gap: 15px;
+    visibility: hidden;
+}
+
+.theater.active {
+    z-index: 2;
+    visibility: visible;
+}
+
+.theater #th-img {
+    max-width: 80%;
+    object-fit: contain;
+}
+
+div.th-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: var(--border-color);
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+div.th-close>i::before {
+    color: white;
+}
+
+.container{
+    z-index: 1;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 3px solid var(--border-color);
+    width: 60%;
+    max-width: 60%;
+}
+
+header>div.title {
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.post div.content {
+    display: flex;
+    background-color: black;
+    justify-content: space-around;
+}
+
+.post div.content img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.post div.content :not(:first-child) {
+    display: none;
+}
+
+.post section.post-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+section.post-buttons .main-buttons {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    padding-left: 5px;
+}
+
+.main-buttons>li.button-item {
+    padding: 10px;
+    font-size: 2rem;
+    font-weight: 800;
+    transition: color 0.4s ease-in-out;
+}
+
+.main-buttons>li.button-item:hover i,
+.main-buttons>li.button-item:active i,
+.main-buttons>li.button-item.active i {
+    color: var(--main-color-bright);
+}
+
+section.comments, section.create-comment {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+section.comments .comment {
+    border: 3px solid var(--border-color);
+    border-left: unset;
+    border-top: unset;
+    border-bottom-width: 1px;
+    border-bottom-right-radius: 10px;
+    padding: 5px;
+    box-shadow: 1px 2px 2px;
+}
+
+.comment-username {
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--main-text-color);
+}
+
+.comment-username:hover, .comment-username:active {
+    color: var(--main-color);
+    text-decoration: underline 2px dotted var(--main-color-bright);
+}
+
+.comment-username::after {
+    user-select: none;
+    display: inline-block;
+    text-decoration: none;
+    content: "\00a0\27F6\00a0";
+}
+
+section.create-comment {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+section.create-comment>input.comment-input {
+    flex-grow: 2;
+    padding: 15px;
+    border: none;
+    transition: border 0.4s ease-in;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    border-bottom-color: var(--border-color);
+    outline: none;
+    -moz-outline-radius: 25px;
+}
+
+section.create-comment>input.comment-input:hover,
+section.create-comment>input.comment-input:active,
+section.create-comment>input.comment-input:focus {
+    border-color: var(--main-color);
+}
+
+section.create-comment>button.submit {
+    flex-grow: 0.3;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    border: solid 2px var(--main-color);
+    background-color: var(--main-color);
+    transition: all 0.4s ease-in-out;
+}
+
+section.create-comment>button.submit>i::before {
+    color: white;
+}
+
+section.create-comment>button.submit[disabled] {
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+}
+
+section.create-comment>button.submit:hover:not([disabled]){
+    background-color: var(--main-color-bright);
+    border-color: var(--main-color-bright);
+}
+
+section.create-comment>button.submit:active:not([disabled]){
+    filter: brightness(75%);
+}
+
+@media screen and (max-width: 500px) {
+    .post {
+        width: 90%;
+        max-width: 90%;
+    }
+}
